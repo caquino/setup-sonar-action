@@ -46,5 +46,5 @@ export interface PostBranchRenameParams {
 
 export interface PostDisableAutoscanParams {
   projectKey: string;
-  enabled: boolean;
+  enable: string;
 }

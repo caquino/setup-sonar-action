@@ -46,7 +46,7 @@ export async function run() {
       core.info(`Disabling autoscan for project ${project.key}...`);
       await api.disableAutoscan({
         projectKey: project.key,
-        enabled: false,
+        enable: "false"
       });
     }
 
