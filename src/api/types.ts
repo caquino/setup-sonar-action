@@ -3,6 +3,7 @@ export const API_CONFIG = {
   PATHS: {
     PROJECTS: '/projects',
     BRANCHES: '/project_branches',
+    AUTOSCAN: '/autoscan',
   },
 } as const;
 
@@ -41,4 +42,9 @@ export type GetProjectsByProjectKeyResponse = {
 export interface PostBranchRenameParams {
   name: string;
   project: string;
+}
+
+export interface PostDisableAutoscanParams {
+  projectKey: string;
+  enabled: boolean;
 }
