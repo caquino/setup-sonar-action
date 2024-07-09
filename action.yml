@@ -17,6 +17,10 @@ inputs:
     description: "Name of the main branch of the project"
     required: false
     default: main
+  SONAR_AUTOSCAN:
+    description: "Enable autoscan for the project"
+    required: false
+    default: false
   SONAR_TOKEN:
     description: "Sonar token used to integrate with SonarCloud api."
     required: true
