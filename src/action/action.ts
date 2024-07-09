@@ -23,17 +23,19 @@ export async function run() {
       core.setOutput(ActionOutputKeys.organization, projectExists.organization);
       core.setOutput(ActionOutputKeys.projectKey, projectExists.key);
 
-      core.notice(
+      console.log(
         `Project ${projectExists.key} already exists. No action performed.`
       );
       return core.ExitCode.Success;
     }
 
+    console.log(`Creating project ${createProjectParams.project}...`);
     const { project } = await api.createProject(createProjectParams);
 
     const shouldRenameMainBranch = inputs.mainBranch !== 'master';
 
     if (shouldRenameMainBranch) {
+      console.log(`Renaming main branch to ${inputs.mainBranch}...`);
       await api.renameMasterBranch({
         name: inputs.mainBranch,
         project: project.key,
@@ -41,6 +43,7 @@ export async function run() {
     }
 
     if (!inputs.autoScan) {
+      console.log(`Disabling autoscan for project ${project.key}...`);
       await api.disableAutoscan({
         projectKey: project.key,
         enabled: false,
