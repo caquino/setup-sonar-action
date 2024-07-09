@@ -45,8 +45,12 @@ export default class ApiClient {
   }
 
   async disableAutoscan(params: PostDisableAutoscanParams) {
-    return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, {
+    return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, 
+    {
       params,
+    }, 
+    {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
   }
 }
