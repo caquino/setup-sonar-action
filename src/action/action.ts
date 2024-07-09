@@ -40,10 +40,14 @@ export async function run() {
       });
     }
 
-    core.setOutput(
-      ActionOutputKeys.organization,
-      createProjectParams.organization
-    );
+    if (!inputs.autoScan) {
+      await api.disableAutoscan({
+        projectKey: project.key,
+        enabled: false,
+      });
+    }
+
+    core.setOutput(ActionOutputKeys.organization, createProjectParams.organization);
     core.setOutput(ActionOutputKeys.projectKey, project.key);
 
     return core.ExitCode.Success;

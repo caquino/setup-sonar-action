@@ -1,30 +1,30 @@
-name: 'create-sonar-project'
-description: 'Create a project in SonarCloud using web api.'
-author: 'nelsoncanarinho'
+name: "create-sonar-project"
+description: "Create a project in SonarCloud using web api."
+author: "nelsoncanarinho"
 branding:
   icon: bar-chart-2
   color: yellow
 inputs:
   SONAR_PROJECT_NAME:
-    description: 'Sonar custom name for the project. Default is the repo name.'
+    description: "Sonar custom name for the project. Default is the repo name."
   SONAR_PROJECT_KEY:
-    description: 'Sonar custom project key. Default is the repo name.'
+    description: "Sonar custom project key. Default is the repo name."
     required: false
   SONAR_ORGANIZATION:
-    description: 'Name of the organization configured in Sonar. Default is the repo owner.'
+    description: "Name of the organization configured in Sonar. Default is the repo owner."
     required: false
   SONAR_DEFAULT_BRANCH:
-    description: 'Name of the main branch of the project'
+    description: "Name of the main branch of the project"
     required: false
     default: main
   SONAR_TOKEN:
-    description: 'Sonar token used to integrate with SonarCloud api.'
+    description: "Sonar token used to integrate with SonarCloud api."
     required: true
 outputs:
   SONAR_ORGANIZATION:
-    description: 'Sonar organization for the created project'
+    description: "Sonar organization for the created project"
   SONAR_PROJECT_KEY:
-    description: 'Sonar project key for the created project'
+    description: "Sonar project key for the created project"
 runs:
-  using: 'node16'
-  main: 'dist/index.js'
+  using: "node20"
+  main: "dist/index.js"

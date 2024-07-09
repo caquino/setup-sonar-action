@@ -6,6 +6,7 @@ import {
   GetProjectsByProjectKeyParams,
   GetProjectsByProjectKeyResponse,
   PostBranchRenameParams,
+  PostDisableAutoscanParams,
 } from './types';
 
 export default class ApiClient {
@@ -14,7 +15,7 @@ export default class ApiClient {
   constructor(apiToken: string) {
     this.httpClient = axios.create({
       baseURL: API_CONFIG.BASE_URL,
-      auth: { username: apiToken, password: '' },
+      headers: { 'Authorization': `Bearer ${apiToken}` },
     });
   }
 
@@ -39,6 +40,12 @@ export default class ApiClient {
 
   async renameMasterBranch(params: PostBranchRenameParams) {
     return this.httpClient.post(`${API_CONFIG.PATHS.BRANCHES}/rename`, '', {
+      params,
+    });
+  }
+
+  async disableAutoscan(params: PostDisableAutoscanParams) {
+    return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, '', {
       params,
     });
   }

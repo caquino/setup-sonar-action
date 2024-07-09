@@ -4,6 +4,7 @@ export interface ActionInputs {
   organization: string;
   projectName: string;
   mainBranch: string;
+  autoScan: boolean;
 }
 
 export enum ActionInputKeys {
@@ -12,6 +13,7 @@ export enum ActionInputKeys {
   organization = 'SONAR_ORGANIZATION',
   projectName = 'SONAR_PROJECT_NAME',
   mainBranch = 'SONAR_DEFAULT_BRANCH',
+  autoScan = 'SONAR_AUTOSCAN',
 }
 
 export enum ActionOutputKeys {
