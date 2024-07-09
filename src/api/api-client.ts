@@ -39,18 +39,14 @@ export default class ApiClient {
   }
 
   async renameMasterBranch(params: PostBranchRenameParams) {
-    return this.httpClient.post(`${API_CONFIG.PATHS.BRANCHES}/rename`, '', {
+    return this.httpClient.post(`${API_CONFIG.PATHS.BRANCHES}/rename`, null, {
       params,
     });
   }
 
   async disableAutoscan(params: PostDisableAutoscanParams) {
-    return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, 
-    {
+    return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, null, {
       params,
-    }, 
-    {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     });
   }
 }
