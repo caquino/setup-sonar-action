@@ -39712,12 +39712,12 @@ class ApiClient {
             .then(res => res.data);
     }
     async renameMasterBranch(params) {
-        return this.httpClient.post(`${API_CONFIG.PATHS.BRANCHES}/rename`, '', {
+        return this.httpClient.post(`${API_CONFIG.PATHS.BRANCHES}/rename`, null, {
             params,
         });
     }
     async disableAutoscan(params) {
-        return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, '', {
+        return this.httpClient.post(`${API_CONFIG.PATHS.AUTOSCAN}/activation`, null, {
             params,
         });
     }
@@ -39782,21 +39782,24 @@ async function run() {
         if (projectExists) {
             core.setOutput(ActionOutputKeys.organization, projectExists.organization);
             core.setOutput(ActionOutputKeys.projectKey, projectExists.key);
-            core.notice(`Project ${projectExists.key} already exists. No action performed.`);
+            core.info(`Project ${projectExists.key} already exists. No action performed.`);
             return core.ExitCode.Success;
         }
+        core.info(`Creating project ${createProjectParams.project}...`);
         const { project } = await api.createProject(createProjectParams);
         const shouldRenameMainBranch = inputs.mainBranch !== 'master';
         if (shouldRenameMainBranch) {
+            core.info(`Renaming main branch to ${inputs.mainBranch}...`);
             await api.renameMasterBranch({
                 name: inputs.mainBranch,
                 project: project.key,
             });
         }
         if (!inputs.autoScan) {
+            core.info(`Disabling autoscan for project ${project.key}...`);
             await api.disableAutoscan({
                 projectKey: project.key,
-                enabled: false,
+                enable: "false"
             });
         }
         core.setOutput(ActionOutputKeys.organization, createProjectParams.organization);
