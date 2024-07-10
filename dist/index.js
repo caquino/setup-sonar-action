@@ -39753,7 +39753,7 @@ function getInputs() {
     const organization = core.getInput(ActionInputKeys.organization);
     const projectName = core.getInput(ActionInputKeys.projectName);
     const mainBranch = core.getInput(ActionInputKeys.mainBranch);
-    const autoScan = core.getBooleanInput(ActionInputKeys.autoScan);
+    const autoScan = core.getInput(ActionInputKeys.autoScan);
     return { sonarToken, project, organization, projectName, mainBranch, autoScan };
 }
 function buildCreateProjectParams(inputs) {
@@ -39795,7 +39795,7 @@ async function run() {
                 project: project.key,
             });
         }
-        if (!inputs.autoScan) {
+        if (!Boolean(inputs.autoScan)) {
             core.info(`Disabling autoscan for project ${project.key}...`);
             await api.disableAutoscan({
                 projectKey: project.key,

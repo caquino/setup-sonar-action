@@ -13,7 +13,7 @@ export function getInputs(): ActionInputs {
   const organization = core.getInput(ActionInputKeys.organization);
   const projectName = core.getInput(ActionInputKeys.projectName);
   const mainBranch = core.getInput(ActionInputKeys.mainBranch);
-  const autoScan = core.getBooleanInput(ActionInputKeys.autoScan);
+  const autoScan = core.getInput(ActionInputKeys.autoScan);
 
   return { sonarToken, project, organization, projectName, mainBranch, autoScan };
 }

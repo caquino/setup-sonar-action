@@ -4,7 +4,7 @@ export interface ActionInputs {
   organization: string;
   projectName: string;
   mainBranch: string;
-  autoScan: boolean;
+  autoScan: string;
 }
 
 export enum ActionInputKeys {

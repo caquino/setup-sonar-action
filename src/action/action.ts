@@ -42,7 +42,7 @@ export async function run() {
       });
     }
 
-    if (!inputs.autoScan) {
+    if (!Boolean(inputs.autoScan)) {
       core.info(`Disabling autoscan for project ${project.key}...`);
       await api.disableAutoscan({
         projectKey: project.key,
